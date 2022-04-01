@@ -8,7 +8,13 @@ const DrawerNavigator = () => {
 
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="Home" component={TabNavigation} />
+      <Drawer.Screen
+        name="Home"
+        component={TabNavigation}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Drawer.Screen name="Profile" component={Profile} />
     </Drawer.Navigator>
   );

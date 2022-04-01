@@ -35,7 +35,7 @@ const Home = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'red',
+    backgroundColor: '#ddd',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

@@ -7,15 +7,10 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
 } from 'react-native';
 import {IData} from '../../types/pokemon';
-import {capitalize} from '../../utils/string';
-
-const Item = (props: {item: any}) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{capitalize(props.item.name)}</Text>
-  </View>
-);
+import {Item} from './Item';
 
 export const FlatListW = (props: {data: IData[]}) => {
   const renderItem = (props: {item: any}) => <Item item={props.item} />;
@@ -25,7 +20,9 @@ export const FlatListW = (props: {data: IData[]}) => {
       <FlatList
         data={props.data}
         renderItem={renderItem}
-        keyExtractor={item => item.name}
+        keyExtractor={(item: any) => item.id}
+        numColumns={2}
+        contentContainerStyle={styles.flatList}
       />
     </SafeAreaView>
   );
@@ -39,16 +36,7 @@ const styles = StyleSheet.create({
     width: dimension.width,
     marginTop: 10,
   },
-  item: {
-    backgroundColor: '#fff',
-    padding: 15,
-    marginVertical: 4,
-    marginHorizontal: 5,
-  },
-  title: {
-    fontSize: 24,
-    color: '#000',
-    alignItems: 'center',
-    textAlign: 'center',
+  flatList: {
+    paddingHorizontal: 0,
   },
 });

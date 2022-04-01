@@ -11,8 +11,9 @@ const TabNavigation = () => {
       <Tab.Screen
         name="Home"
         options={{
-          headerShown: false,
           tabBarLabel: '',
+          title: 'Pokedex',
+          headerTitleAlign: 'center',
           tabBarIcon: () => renderImageMenu(),
         }}
         component={NavigationHome}

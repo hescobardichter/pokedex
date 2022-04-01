@@ -9,11 +9,8 @@ export const useHome = () => {
   useEffect(() => {
     getItems()
       .then((res: any) => {
-        const data = res.data.results.map((item: any) => {
-          return item;
-        });
-        setPokemons(data);
-        setAllPokemons(data);
+        setPokemons(res);
+        setAllPokemons(res);
       })
       .catch(err => {
         console.log(err);

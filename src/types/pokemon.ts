@@ -2,11 +2,10 @@ export interface IResult{
     count: number;
     next: string;
     previous: any;
-    result: IData[]
+    results: IData[]
 }
 
 export interface IData{
-    id: string;
     name: string;
     url: string;
 }
