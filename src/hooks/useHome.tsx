@@ -2,19 +2,24 @@ import React, {useEffect, useState} from 'react';
 import {getItems} from '../services/items.services';
 
 export const useHome = () => {
-  const [allPokemons, setAllPokemons] = useState([]);
-  const [pokemons, setPokemons] = useState([]);
+  const [allPokemons, setAllPokemons] = useState<Array<any>>([]);
+  const [pokemons, setPokemons] = useState<Array<any>>([]);
   const [search, setSearch] = useState('');
+  const [isNext, setIsNext] = useState(null);
 
-  useEffect(() => {
-    getItems()
+  const loadPokemons = () => {
+    getItems(isNext, setIsNext)
       .then((res: any) => {
-        setPokemons(res);
-        setAllPokemons(res);
+        setPokemons([...pokemons, ...res]);
+        setAllPokemons([...pokemons, ...res]);
       })
       .catch(err => {
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    loadPokemons();
   }, []);
 
   const onFilter = (value: string) => {
@@ -38,5 +43,7 @@ export const useHome = () => {
     setSearch,
     onFilter,
     onKeyPress,
+    isNext,
+    loadPokemons,
   };
 };

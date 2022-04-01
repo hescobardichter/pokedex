@@ -15,7 +15,15 @@ import {NotFound} from '../components/notFound/NotFound';
 import {useHome} from '../hooks/useHome';
 
 const Home = () => {
-  const {pokemons, search, setSearch, onFilter, onKeyPress} = useHome();
+  const {
+    pokemons,
+    search,
+    setSearch,
+    onFilter,
+    onKeyPress,
+    isNext,
+    loadPokemons,
+  } = useHome();
   return (
     <View style={styles.container}>
       <TextField
@@ -28,7 +36,15 @@ const Home = () => {
         onChange={onFilter}
         onKeyPress={onKeyPress}
       />
-      {pokemons.length > 0 ? <FlatListW data={pokemons} /> : <NotFound />}
+      {pokemons.length > 0 ? (
+        <FlatListW
+          data={pokemons}
+          isNext={isNext}
+          loadPokemons={loadPokemons}
+        />
+      ) : (
+        <NotFound />
+      )}
     </View>
   );
 };

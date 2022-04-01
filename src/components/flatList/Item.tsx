@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
@@ -6,9 +7,10 @@ import {capitalize} from '../../utils/string';
 
 export const Item = (props: any) => {
   const {item} = props;
+  const navigation = useNavigation();
 
   const goToPokemon = () => {
-    console.log('vamos a ', item.name);
+    navigation.navigate('Pokemon', {pokemon: item});
   };
 
   const pokemonColor = getColorByPokemonType(

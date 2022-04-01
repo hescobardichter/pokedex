@@ -8,25 +8,53 @@
  * @format
  */
 import React from 'react';
-import {Text, View, StyleSheet, Dimensions} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import Header from '../components/pokemon/Header';
+import Type from '../components/pokemon/Type';
+import Stats from '../components/pokemon/Stats';
+import {usePokemon} from '../hooks/usePokemon';
 
-const Pokemon = () => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Pokemon</Text>
-    </View>
-  );
+const Pokemon = (props: {navigation: any; route: any}) => {
+  const {
+    navigation,
+    route: {params},
+  } = props;
+
+  const {pokemon} = usePokemon(params);
+
+  const buildPokemon = (pokemon: any) => {
+    return (
+      <ScrollView>
+        <Header
+          name={pokemon.name}
+          order={pokemon.order}
+          image={pokemon.sprites.other['official-artwork'].front_default}
+          type={pokemon.types ? pokemon.types[0].type.name : ''}
+        />
+        <Type types={pokemon.types} />
+        <Stats stats={pokemon.stats} />
+      </ScrollView>
+    );
+  };
+
+  const loading = () => {
+    return (
+      <View style={styles.container}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  };
+
+  return pokemon ? buildPokemon(pokemon) : loading();
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'blue',
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-  },
-  label: {
-    color: 'red',
+    justifyContent: 'center',
+    height: '100%',
+    width: '100%',
   },
 });
 

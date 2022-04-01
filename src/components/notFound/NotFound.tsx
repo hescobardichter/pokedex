@@ -17,6 +17,6 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   label: {
-    color: 'white',
+    color: '#000',
   },
 });
