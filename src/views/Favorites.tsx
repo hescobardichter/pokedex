@@ -7,20 +7,23 @@
  *
  * @format
  */
-import React, {useEffect} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
+import React, {useCallback, useState} from 'react';
 import {shallowEqual, useSelector} from 'react-redux';
 import {FlatListW} from '../components/flatList/favorites/FlatList';
 import {StoreState} from '../types/states';
 
 const Favorites = () => {
-  const favorites = useSelector(
+  let favorites = useSelector(
     (state: StoreState) => state.favoritesReducer.favorites,
     shallowEqual,
   );
 
-  useEffect(() => {
-    console.log('eeee');
-  }, [favorites]);
+  useFocusEffect(
+    useCallback(() => {
+      console.log('adsasee');
+    }, []),
+  );
 
   return <FlatListW pokemons={favorites} />;
 };

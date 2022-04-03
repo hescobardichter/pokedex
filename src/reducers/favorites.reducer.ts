@@ -10,11 +10,12 @@ const favoritesReducer = (state: any = initialState, action: Action ) => {
     const { type,  payload } = action;
     switch (type) {
       case FavoritesActions.ADD:
-        const favorites = state.favorites;
-        favorites.push(payload)
         return {
           ...state,
-          favorites: favorites
+          favorites: [
+            ...state.favorites,
+            payload
+          ]
         };
       case FavoritesActions.REMOVE:
         const filter = state.favorites.filter((favorite: any) => favorite.id !== payload.id);

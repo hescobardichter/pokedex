@@ -22,7 +22,7 @@ export const FlatListW = (props: IProps) => {
         renderItem={renderItem}
         keyExtractor={(item: any) => item.id}
         numColumns={3}
-        extraData={pokemons}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.flatList}
       />
     </SafeAreaView>
