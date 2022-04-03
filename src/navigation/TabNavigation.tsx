@@ -1,9 +1,13 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Image} from 'react-native';
+import {Image, ImageSourcePropType} from 'react-native';
 import Pokedex from './StackNavigation';
+import FavoriteStack from './FavoriteStackNavigation';
 
 const Tab = createBottomTabNavigator();
+
+const home = require('../assets/pokeball.png');
+const favorite = require('../assets/favorites.png');
 
 const TabNavigation = () => {
   return (
@@ -14,16 +18,26 @@ const TabNavigation = () => {
           tabBarLabel: '',
           title: 'Pokedex',
           headerShown: false,
-          tabBarIcon: () => renderImageMenu(),
+          tabBarIcon: () => renderImageMenu(home),
         }}
         component={Pokedex}
+      />
+      <Tab.Screen
+        name="Favorites"
+        options={{
+          tabBarLabel: '',
+          title: 'Favoritos',
+          headerShown: false,
+          tabBarIcon: () => renderImageMenu(favorite),
+        }}
+        component={FavoriteStack}
       />
     </Tab.Navigator>
   );
 };
 export default TabNavigation;
 
-function renderImageMenu() {
+function renderImageMenu(icon: ImageSourcePropType) {
   return (
     <Image
       style={{
@@ -33,7 +47,7 @@ function renderImageMenu() {
         marginLeft: 10,
         marginRight: 10,
       }}
-      source={require('../assets/pokeball.png')}
+      source={icon}
     />
   );
 }

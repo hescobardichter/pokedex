@@ -25,12 +25,7 @@ const Pokemon = (props: {navigation: any; route: any}) => {
   const buildPokemon = (pokemon: any) => {
     return (
       <ScrollView>
-        <Header
-          name={pokemon.name}
-          order={pokemon.order}
-          image={pokemon.sprites.other['official-artwork'].front_default}
-          type={pokemon.types ? pokemon.types[0].type.name : ''}
-        />
+        <Header pokemon={pokemon} />
         <Type types={pokemon.types} />
         <Stats stats={pokemon.stats} />
       </ScrollView>

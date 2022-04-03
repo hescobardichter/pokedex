@@ -2,18 +2,20 @@ import React from 'react';
 import {StyleSheet, View, SafeAreaView, Text, Image} from 'react-native';
 import {capitalize} from 'lodash';
 import getColorByPokemonType from '../../utils/color';
+import {FavoritesBtn} from '../button/Favorites';
+import {useFavorites} from '../../hooks/useFavorites';
 
 interface IProps {
-  name: string;
-  order: number;
-  image: string;
-  type: any;
+  pokemon: any;
 }
 
 export default function Header(props: IProps) {
-  const {name, order, image, type} = props;
+  const {pokemon} = props;
+  const {id, name, order} = pokemon;
+  const image = pokemon.sprites.other['official-artwork'].front_default;
+  const type = pokemon.types ? pokemon.types[0].type.name : '';
   const color = getColorByPokemonType(type);
-
+  const {isFavorite, handleChange} = useFavorites(pokemon);
   const bgStyle = [{backgroundColor: color, ...styles.bg}];
 
   return (
@@ -23,7 +25,7 @@ export default function Header(props: IProps) {
       <SafeAreaView style={styles.content}>
         <View style={styles.header}>
           <Text style={styles.name}>{capitalize(name)}</Text>
-          <Text style={styles.order}>#{`${order}`}</Text>
+          <FavoritesBtn isFavorite={isFavorite} handleChange={handleChange} />
         </View>
         <View style={styles.contentImg}>
           <Image source={{uri: image}} style={styles.image} />

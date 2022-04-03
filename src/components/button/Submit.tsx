@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     height: 60,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'purple',
+    backgroundColor: '#FA6C6C',
     marginLeft: 15,
     marginRight: 15,
   },

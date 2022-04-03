@@ -6,14 +6,18 @@ export const useHome = () => {
   const [pokemons, setPokemons] = useState<Array<any>>([]);
   const [search, setSearch] = useState('');
   const [isNext, setIsNext] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const loadPokemons = () => {
+    setLoading(true);
     getItems(isNext, setIsNext)
       .then((res: any) => {
+        setLoading(false);
         setPokemons([...pokemons, ...res]);
         setAllPokemons([...pokemons, ...res]);
       })
       .catch(err => {
+        setLoading(false);
         console.log(err);
       });
   };
@@ -45,5 +49,6 @@ export const useHome = () => {
     onKeyPress,
     isNext,
     loadPokemons,
+    loading,
   };
 };
