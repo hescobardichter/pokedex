@@ -7,10 +7,10 @@
  *
  * @format
  */
-import {useFocusEffect} from '@react-navigation/native';
-import React, {useCallback, useState} from 'react';
+import React from 'react';
 import {shallowEqual, useSelector} from 'react-redux';
 import {FlatListW} from '../components/flatList/favorites/FlatList';
+import {NotFavorites} from '../components/notFound/NotFavorites';
 import {StoreState} from '../types/states';
 
 const Favorites = () => {
@@ -18,14 +18,11 @@ const Favorites = () => {
     (state: StoreState) => state.favoritesReducer.favorites,
     shallowEqual,
   );
-
-  useFocusEffect(
-    useCallback(() => {
-      console.log('adsasee');
-    }, []),
+  return favorites.length > 0 ? (
+    <FlatListW pokemons={favorites} />
+  ) : (
+    <NotFavorites />
   );
-
-  return <FlatListW pokemons={favorites} />;
 };
 
 export default Favorites;
