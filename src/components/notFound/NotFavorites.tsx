@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 
 export const NotFavorites = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>No ha capturado ningún Pokemon.</Text>
+      <Image source={require('../../assets/pato.png')} style={styles.image} />
+      <Text style={styles.title}>No ha capturado ningún Pokémon.</Text>
     </View>
   );
 };
@@ -20,5 +21,10 @@ const styles = StyleSheet.create({
   title: {
     color: '#000',
     fontSize: 20,
+  },
+  image: {
+    width: 160,
+    height: 160,
+    marginBottom: 20,
   },
 });
