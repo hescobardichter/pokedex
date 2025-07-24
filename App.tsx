@@ -7,11 +7,13 @@ import {store} from './src/store/createStore';
 
 const App = () => {
   return (
+    <>
     <Provider store={store}>
       <NavigationContainer>
         <Router />
       </NavigationContainer>
     </Provider>
+    </>
   );
 };
 
